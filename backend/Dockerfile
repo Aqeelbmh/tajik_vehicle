@@ -2,17 +2,20 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
+# Copy package files from backend directory
+COPY backend/package*.json ./
 
 # Install dependencies
 RUN npm install --omit=dev
 
+# Copy Prisma schema
+COPY backend/prisma ./prisma
+
 # Generate Prisma Client
 RUN npx prisma generate
 
-# Copy source code
-COPY . .
+# Copy source code from backend directory
+COPY backend/ .
 
 # Create non-root user
 RUN addgroup -g 1001 -S nodejs
