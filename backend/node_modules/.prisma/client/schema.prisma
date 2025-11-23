@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Content {
+  id        String   @id @default(uuid())
+  page      String
+  section   String
+  title     String?
+  content   String?
+  imageUrl  String?
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Lead {
+  id        String   @id @default(uuid())
+  name      String?
+  company   String?
+  email     String?
+  phone     String?
+  subject   String?
+  message   String?
+  status    String   @default("New Inquiry")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Partner {
+  id        String   @id @default(uuid())
+  name      String?
+  company   String?
+  email     String?
+  phone     String?
+  message   String?
+  status    String   @default("New Inquiry")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Vehicle {
+  id             String   @id @default(uuid())
+  name           String
+  model          String
+  brand          String
+  category       String
+  price          Float
+  description    String?
+  specifications Json?
+  images         String[]
+  inStock        Boolean  @default(true)
+  featured       Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model SparePart {
+  id               String   @id @default(uuid())
+  name             String
+  partNumber       String
+  category         String
+  compatibleModels String[]
+  price            Float
+  description      String?
+  images           String[]
+  inStock          Boolean  @default(true)
+  featured         Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
