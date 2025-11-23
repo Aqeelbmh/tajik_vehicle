@@ -1,0 +1,280 @@
+/* Enhanced Page-Specific Layouts */
+
+/* Home Page Enhancements */
+.home-page .hero-section {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+}
+
+.home-page .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xxl);
+}
+
+.home-page .feature-card {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.home-page .feature-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.home-page .feature-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.home-page .feature-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+/* Gallery Page Enhancements */
+.gallery-page .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.gallery-page .gallery-item {
+    position: relative;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-page .gallery-item:hover {
+    transform: scale(1.05);
+    z-index: 10;
+    box-shadow: var(--premium-shadow);
+}
+
+.gallery-page .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-page .gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Contact Page Enhancements */
+.contact-page .contact-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--spacing-xxl);
+    margin-top: var(--spacing-xl);
+}
+
+@media (max-width: 968px) {
+    .contact-page .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.contact-page .contact-form {
+    background: white;
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--premium-shadow);
+}
+
+.contact-page .contact-info-card {
+    padding: var(--spacing-lg);
+    background: white;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow-lg);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-page .contact-info-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--premium-shadow);
+}
+
+/* Services Page Enhancements */
+.services-page .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
+}
+
+.services-page .service-card {
+    position: relative;
+    padding: var(--spacing-xl);
+    background: white;
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--box-shadow-lg);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.services-page .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.services-page .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--premium-shadow);
+}
+
+.services-page .service-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* About Page Enhancements */
+.about-page .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.about-page .team-member {
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: white;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow-md);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.about-page .team-member:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--premium-shadow);
+}
+
+.about-page .mission-vision {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--spacing-xxl);
+    margin: var(--spacing-xxl) 0;
+}
+
+.about-page .mission-card,
+.about-page .vision-card {
+    padding: var(--spacing-xl);
+    background: linear-gradient(135deg, rgba(13, 44, 84, 0.05), rgba(14, 165, 233, 0.05));
+    border-radius: var(--border-radius-xl);
+    border-left: 4px solid var(--secondary-color);
+}
+
+/* Partners Page Enhancements */
+.partners-page .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.partners-page .partner-card {
+    padding: var(--spacing-xl);
+    background: white;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow-md);
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.partners-page .partner-card:hover {
+    transform: scale(1.05);
+    box-shadow: var(--premium-shadow);
+}
+
+/* Vehicles & Parts Catalog Enhancements */
+.vehicles-page .vehicle-grid,
+.parts-page .parts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
+}
+
+.vehicles-page .filters-panel,
+.parts-page .filters-panel {
+    background: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Search Bar Enhancement */
+.search-input,
+.filter-select {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-input:focus,
+.filter-select:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 4px rgba(255, 193, 7, 0.1), var(--box-shadow-md);
+}
+
+/* Loading States */
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xxl);
+    font-size: 1.125rem;
+    color: var(--gray-color);
+}
+
+.loading::after {
+    content: '...';
+    animation: dots 1.5s infinite;
+}
+
+@keyframes dots {
+
+    0%,
+    20% {
+        content: '.';
+    }
+
+    40% {
+        content: '..';
+    }
+
+    60%,
+    100% {
+        content: '...';
+    }
+}
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+
+    .home-page .feature-grid,
+    .services-page .services-grid,
+    .vehicles-page .vehicle-grid,
+    .parts-page .parts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-page .mission-vision {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-page .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: var(--spacing-md);
+    }
+}
