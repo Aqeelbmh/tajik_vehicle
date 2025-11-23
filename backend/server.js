@@ -18,7 +18,8 @@ const prisma = new PrismaClient();
 app.use(cors({
     origin: ['http://localhost:5174', 'http://localhost:80', 'http://localhost',
         'https://tajik-vehicle-production.up.railway.app',
-        'https://tajik-vehicle.up.railway.app'],
+        'https://tajik-vehicle.up.railway.app',
+        'https://tajik-vehicle.vercel.app'],
     credentials: true
 }));
 app.use(express.json());
