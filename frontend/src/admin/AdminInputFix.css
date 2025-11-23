@@ -1,0 +1,42 @@
+/* Enhanced Admin Input Styles - Global */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+input[type="date"],
+select,
+textarea {
+    color: var(--dark-color) !important;
+    background-color: white !important;
+    font-family: var(--font-primary);
+    -webkit-text-fill-color: var(--dark-color);
+    opacity: 1;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--gray-color) !important;
+    opacity: 0.6 !important;
+}
+
+/* Ensure disabled inputs are visible but distinct */
+input:disabled,
+select:disabled,
+textarea:disabled {
+    background-color: #f1f5f9 !important;
+    color: #64748b !important;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+/* Fix for safari/webkit autofill */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-text-fill-color: var(--dark-color) !important;
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
