@@ -8,11 +8,14 @@ dotenv.config();
 
 // Initialize app
 const app = express();
-const PORT = process.env.PORT || 8081;
+// Railway provides PORT environment variable
+const PORT = process.env.RAILWAY_PORT || process.env.PORT || 8081;
 
 // Middleware
 app.use(cors({
-    origin: ['http://localhost:5174', 'http://localhost:80', 'http://localhost'], // Allow multiple origins for development and production
+    origin: ['http://localhost:5174', 'http://localhost:80', 'http://localhost',
+        'https://tajik-vehicle-production.up.railway.app',  // Add Railway domain
+        'https://tajik-vehicle.up.railway.app'],            // Add Railway domain
     credentials: true
 }));
 app.use(express.json());
@@ -21,14 +24,13 @@ app.use(express.json());
 const connectDB = async () => {
     try {
         console.log('Attempting to connect to MongoDB...');
-        const conn = await mongoose.connect(process.env.MONGODB_URI, {
+        // Use RAILWAY_MONGO_URI if available, otherwise use MONGODB_URI
+        const mongoUri = process.env.RAILWAY_MONGO_URI || process.env.MONGODB_URI || 'mongodb://mongo:27017/hvsp';
+
+        const conn = await mongoose.connect(mongoUri, {
             // Remove deprecated options
             serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
             socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
-            // Add SSL options to resolve TLS issues
-            tls: true,
-            tlsAllowInvalidCertificates: false,
-            tlsAllowInvalidHostnames: false
         });
         console.log(`MongoDB connected: ${conn.connection.host}`);
     } catch (error) {

@@ -13,5 +13,17 @@ export default defineConfig({
         secure: false,
       }
     }
+  },
+  // Add base path for Railway deployment
+  base: '/',
+  // Optimize for production build
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
   }
 })
