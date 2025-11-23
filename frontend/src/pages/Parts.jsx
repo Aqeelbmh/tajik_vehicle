@@ -14,6 +14,15 @@ const Parts = () => {
     const [parts, setParts] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    // Category definitions
+    const categories = [
+        { id: 1, name: 'engine', label: t('parts.engine') },
+        { id: 2, name: 'hydraulics', label: t('parts.hydraulics') },
+        { id: 3, name: 'chassis', label: t('parts.chassis') },
+        { id: 4, name: 'filters', label: t('parts.filters') },
+        { id: 5, name: 'electrical', label: t('parts.electrical') }
+    ];
+
     // Fetch spare parts from database
     React.useEffect(() => {
         const fetchParts = async () => {
