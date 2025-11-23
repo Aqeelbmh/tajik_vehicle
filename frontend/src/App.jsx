@@ -11,6 +11,7 @@ import './components/TailwindComponents.css';
 
 // Import page components
 import Header from './components/Header';
+import SplashScreen from './components/SplashScreen';
 import Home from './pages/Home';
 import Vehicles from './pages/Vehicles';
 import Parts from './pages/Parts';
@@ -34,11 +35,20 @@ import './admin/cms/CMSDashboard.css';
 function App() {
   const { i18n } = useTranslation();
   const [language, setLanguage] = useState(i18n.language);
+  const [showSplash, setShowSplash] = useState(true);
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
     setLanguage(lng);
   };
+
+  const handleSplashComplete = () => {
+    setShowSplash(false);
+  };
+
+  if (showSplash) {
+    return <SplashScreen onComplete={handleSplashComplete} />;
+  }
 
   return (
     <Router>
