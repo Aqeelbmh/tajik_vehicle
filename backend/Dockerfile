@@ -8,6 +8,9 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install --omit=dev
 
+# Generate Prisma Client
+RUN npx prisma generate
+
 # Copy source code
 COPY . .
 
