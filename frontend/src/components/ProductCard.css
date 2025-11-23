@@ -1,0 +1,247 @@
+.product-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover::before {
+    transform: scaleX(1);
+}
+
+.placeholder-image {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray-color);
+    font-weight: 500;
+    height: 220px;
+    background: linear-gradient(45deg, #f1f5f9, #e2e8f0);
+}
+
+.placeholder-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #f1f5f9, #e2e8f0);
+    z-index: 1;
+}
+
+.placeholder-image::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg,
+            transparent,
+            rgba(255, 255, 255, 0.5),
+            transparent);
+    transform: rotate(45deg);
+    animation: shine 3s infinite;
+    z-index: 2;
+}
+
+.placeholder-image span {
+    position: relative;
+    z-index: 3;
+    font-size: 1rem;
+    color: var(--gray-color);
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
+
+.product-info {
+    padding: 1.5rem;
+    background: white;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-info h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.product-info p {
+    margin-bottom: 1.5rem;
+    color: var(--gray-color);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.card-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: auto;
+}
+
+.card-actions .btn {
+    flex: 1;
+    justify-content: center;
+}
+
+.placeholder-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    position: relative;
+    z-index: 3;
+}
+
+.placeholder-icon {
+    font-size: 3rem;
+}
+
+.placeholder-text {
+    font-size: 1rem;
+    color: var(--gray-color);
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.vehicle-image-container {
+    margin-bottom: 1.5rem;
+}
+
+.vehicle-image-container .placeholder-image {
+    height: 300px;
+}
+
+.vehicle-description {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background-color: var(--background-light);
+    border-radius: 0.5rem;
+}
+
+.vehicle-description h3 {
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.vehicle-description p {
+    line-height: 1.6;
+    color: var(--text-light);
+}
+
+/* Specific style for vehicle description in listing cards */
+.product-info .vehicle-description {
+    margin: 0.5rem 0 1rem 0;
+    padding: 0;
+    background-color: transparent;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text-muted-light);
+    min-height: 3rem;
+}
+
+/* Finance Calculator Styles */
+#finance input::-webkit-outer-spin-button,
+#finance input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#finance input[type=number] {
+    -moz-appearance: textfield;
+}
+
+#finance .backdrop-blur-sm {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.placeholder-logo {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    color: var(--gray-color);
+    position: relative;
+    overflow: hidden;
+    height: 100px;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.placeholder-logo::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    z-index: 1;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.placeholder-logo::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg,
+            transparent,
+            rgba(255, 255, 255, 0.8),
+            transparent);
+    transform: rotate(45deg);
+    animation: shine 4s infinite;
+    z-index: 2;
+}
+
+.placeholder-logo span {
+    position: relative;
+    z-index: 3;
+}
+
+.placeholder-logo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
