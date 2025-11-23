@@ -1,6 +1,6 @@
 [build]
 builder = "DOCKERFILE"
-dockerfilePath = "./docker-compose.yml"
+dockerfilePath = "./backend/Dockerfile"
 
 [deploy]
 numReplicas = 1
