@@ -11,27 +11,38 @@ const Parts = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitSuccess, setSubmitSuccess] = useState(false);
     const [submitError, setSubmitError] = useState('');
+    const [parts, setParts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    const categories = [
-        { id: 1, name: 'engine', label: t('parts.engine') },
-        { id: 2, name: 'hydraulics', label: t('parts.hydraulics') },
-        { id: 3, name: 'chassis', label: t('parts.chassis') },
-        { id: 4, name: 'filters', label: t('parts.filters') },
-        { id: 5, name: 'electrical', label: t('parts.electrical') }
-    ];
+    // Fetch spare parts from database
+    React.useEffect(() => {
+        const fetchParts = async () => {
+            try {
+                setLoading(true);
+                const baseUrl = import.meta.env?.VITE_API_URL ||
+                    (window.location.hostname === 'localhost' ? 'http://localhost:8081/api' : '/api');
 
-    const parts = [
-        { id: 1, name: 'Engine Block', partNumber: 'EB-2023-X1', category: 'engine', compatibility: ['Tractor X1', 'Tractor Y2'] },
-        { id: 2, name: 'Hydraulic Pump', partNumber: 'HP-2022-H2', category: 'hydraulics', compatibility: ['Bulldozer BD300', 'Bulldozer BD500'] },
-        { id: 3, name: 'Brake Pad Set', partNumber: 'BP-2021-B3', category: 'chassis', compatibility: ['Lorry T2000', 'Lorry S500'] },
-        { id: 4, name: 'Oil Filter', partNumber: 'OF-2023-O4', category: 'filters', compatibility: ['All Models'] },
-        { id: 5, name: 'Alternator', partNumber: 'ALT-2022-A5', category: 'electrical', compatibility: ['Tractor X1', 'Lorry T2000'] }
-    ];
+                const response = await fetch(`${baseUrl}/spare-parts`);
+                if (response.ok) {
+                    const data = await response.json();
+                    setParts(data);
+                } else {
+                    console.error('Failed to fetch spare parts');
+                }
+            } catch (error) {
+                console.error('Error fetching spare parts:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchParts();
+    }, []);
 
     const filteredParts = parts.filter(part =>
         part.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         part.partNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        part.compatibility.some(model => model.toLowerCase().includes(searchTerm.toLowerCase()))
+        (part.compatibleModels && part.compatibleModels.some(model => model.toLowerCase().includes(searchTerm.toLowerCase())))
     );
 
     const handleInquirySubmit = async (partId) => {
@@ -165,7 +176,11 @@ const Parts = () => {
                             Each record is mapped to live inventory, warranty programs, and available upgrade kits.
                         </p>
                     </div>
-                    {filteredParts.length > 0 ? (
+                    {loading ? (
+                        <div className="loading glass-panel">
+                            <p>Loading spare parts...</p>
+                        </div>
+                    ) : filteredParts.length > 0 ? (
                         <div className="parts-list">
                             {filteredParts.map((part, index) => (
                                 <div
@@ -182,7 +197,8 @@ const Parts = () => {
                                         <h3>{part.name}</h3>
                                         <div className="part-specs">
                                             <p><strong>Part Number:</strong> {part.partNumber}</p>
-                                            <p><strong>Compatibility:</strong> {part.compatibility.join(', ')}</p>
+                                            <p><strong>Compatibility:</strong> {part.compatibleModels ? part.compatibleModels.join(', ') : 'N/A'}</p>
+                                            {part.price && <p><strong>Price:</strong> ${part.price}</p>}
                                         </div>
                                     </div>
                                     <div className="part-actions">
