@@ -10,7 +10,7 @@ A multilingual B2B/B2C platform for heavy machinery (tractors, lorries, bulldoze
 - **CRM Integration**: Lead management and partner inquiries
 - **Modern UI/UX**: Professional design with animations and transitions
 - **Admin CMS**: Content management system for easy updates
-- **Database Integration**: MongoDB for persistent data storage
+- **Database Integration**: Supabase (PostgreSQL) for persistent data storage
 
 ## Technology Stack
 
@@ -23,12 +23,13 @@ A multilingual B2B/B2C platform for heavy machinery (tractors, lorries, bulldoze
 
 ### Backend
 - Node.js with Express
-- MongoDB with Mongoose
+- PostgreSQL (Supabase) with Prisma ORM
 - RESTful API architecture
 
 ### Deployment
+- Railway for backend hosting
+- Vercel for frontend hosting
 - Docker containers
-- Docker Compose for orchestration
 
 ## Project Structure
 
